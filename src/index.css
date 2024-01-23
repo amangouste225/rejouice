@@ -2,13 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 're';
+  src: url("./Rejouice.ttf");
+}
+
+@font-face {
+  font-family: 'nb';
+  src: url("./InternationalPro.ttf");
+}
+
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* overflow: hidden; */
 }
 
-body,
-html {
-  min-height: 100vh;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+  font-family: 'nb';
+  line-height: 1;
+}
+
+.wrapper {
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.rej {
+  font-size: clamp(32rem, 5vw, 30rem);
+
 }
