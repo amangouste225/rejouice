@@ -12,7 +12,7 @@ function App() {
           className="h-full w-full object-cover absolute"
         ></video>
         <header className="h-full w-full relative flex z-50 flex-col justify-between items-center">
-          <nav className="text-white wrapper text-3xl flex items-center justify-between w-full p-5">
+          <nav className="text-white wrapper text-3xl flex items-center justify-between w-full p-10 font-thin">
             <h1>Aside agency.</h1>
             <button>Menu</button>
           </nav>
