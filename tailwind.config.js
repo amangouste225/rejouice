@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontSize: {
-        h1: "32rem",
+        h1: "30rem",
+        "3.5xl": "33px",
       },
       fontFamily: {
         nb: "nb",
@@ -12,6 +13,12 @@ export default {
       },
       colors: {
         primary: "#FF6038",
+      },
+      maxWidth: {
+        max: "1700px",
+      },
+      height: {
+        0.5: "1px",
       },
     },
   },

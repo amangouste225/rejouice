@@ -9,35 +9,47 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function App() {
-  const pageContent = useRef(null);
-  const cursor = useRef(null);
-  const main = useRef(null);
+  const page1 = useRef();
+  const page2 = useRef();
+  const cursor = useRef();
+  const main = useRef();
+  const lines = useRef();
 
-  useEffect(() => {
-    const scroll = new locomotiveScroll({
-      el: main.current,
-      smooth: true,
+  const getChars = (title) => {
+    let chars = [];
+    title.split("").forEach((char, index) => {
+      chars.push(
+        <span key={index} className="h-5 letter">
+          {char}
+        </span>
+      );
     });
-  });
+    return chars;
+  };
 
   useGSAP(
     () => {
-      const cursurFunc = () => {
-        pageContent.current.addEventListener("mousemove", (event) => {
+      const locoScroll = new locomotiveScroll({
+        el: main.current,
+        smooth: true,
+      });
+
+      const cursorFunc = () => {
+        page1.current.addEventListener("mousemove", (event) => {
           gsap.to(cursor.current, {
             x: event.clientX,
             y: event.clientY,
           });
         });
 
-        pageContent.current.addEventListener("mouseenter", () => {
+        page1.current.addEventListener("mouseenter", () => {
           gsap.to(cursor.current, {
             scale: 1,
             opacity: 1,
           });
         });
 
-        pageContent.current.addEventListener("mouseleave", () => {
+        page1.current.addEventListener("mouseleave", () => {
           gsap.to(cursor.current, {
             scale: 0,
             opacity: 0,
@@ -45,14 +57,14 @@ function App() {
         });
       };
 
-      cursurFunc();
+      cursorFunc();
     },
-    { scope: pageContent }
+    { scope: main }
   );
 
   return (
     <main className="h-full w-full" ref={main}>
-      <div className="h-screen w-full relative" ref={pageContent}>
+      <div className="h-screen w-full relative" ref={page1} id="page1">
         <div
           id="cursor"
           ref={cursor}
@@ -72,10 +84,38 @@ function App() {
             <h1>Aside agency.</h1>
             <button>Menu</button>
           </nav>
-          <h1 className="font-re font-thin rej text-white">Rejouice</h1>
+          <div className="max-w-max pointer-events-none">
+            <h1 className="font-re font-thin rej text-white">Rejouice</h1>
+          </div>
         </header>
       </div>
-      <div className="h-screen w-full"></div>
+      <div className="h-screen max-w-max mx-auto" ref={page2} id="page2">
+        <div className="flex relative justify-between font-nb text-3.5xl py-6 leading-none mt-28 items-end">
+          <span
+            className="w-full h-0.5 line-1 bottom-0 absolute inline-block bg-black"
+            ref={lines}
+          ></span>
+          <h4 className="max-w-3xl">
+            <div className="line h-10 w-full relative">
+              <span>Design & strategy for fast growing companies</span>
+            </div>
+            <div className="line h-10 overflow-hidden">
+              <span> Two engagement models</span>
+            </div>
+          </h4>
+          <h4>
+            <span>Paris & Abidjan</span>
+          </h4>
+        </div>
+
+        <h5 className="text-7xl mt-12">
+          We are a digital brand accelerator curating dream teams for dream
+          clients. We design, develop, and scale market-defining brands by
+          unlocking their hidden potential. Choose full cash compensation or
+          offset up to 50% of our fees for equity in your company. Your vision,
+          your decision.
+        </h5>
+      </div>
     </main>
   );
 }
