@@ -10,6 +10,9 @@ export default {
         nb: "nb",
         re: "re",
       },
+      colors: {
+        primary: "#FF6038",
+      },
     },
   },
   plugins: [],
